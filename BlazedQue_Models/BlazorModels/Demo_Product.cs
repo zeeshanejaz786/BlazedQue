@@ -13,6 +13,6 @@ namespace BlazedQue_Models.BlazorModels
         public bool IsActive { get; set; }
         public double Price { get; set; }
 
-
+        public IEnumerable<Demo_ProductProps> ProductProperties { get; set; }
     }
 }

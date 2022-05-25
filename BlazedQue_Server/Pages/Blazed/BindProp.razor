@@ -1,30 +1,79 @@
 ﻿@page "/blazed/bindprop"
+<h2 class="text-success">Individual Product </h2>
+<div class= "row">
+<div class="col-6 border p-3"> 
+<h3 class="text-primary">Product Playground</h3><hr/>
+<div>
+Active:
+<input type="checkbox" @bind=Product.IsActive @bind:event="oninput" />
+<br />
+</div>
+<div>
+Price:
+<input type="number" @bind=Product.Price @bind:event="oninput"/>
+<br />
+</div>
 
+<div>
+Product Properties: 
+<select @bind="SelectedProp ">
+    @foreach(var prop in Product.ProductProperties)
+    {
+        <option value="@prop.Key">@prop.Key</option>
+    }
+</select>
+</div
+<br/>
+</div>
+<div class="col-6 border p-3"> 
+<h3 class="text-primary">Product Summary</h3><hr/>
 
-<h3>Product</h3>
 Name: @Product.Name <br/>
 Active: @Product.IsActive
 <br />
 Price: @Product.Price
 <br />
 The Product is:  @(Product.IsActive? "Active": "InActive")
-
 <br />
-<br />
-
-Active:
-<input type="checkbox" @bind=Product.IsActive @bind:event="oninput" />
-<br />
-Price:
-<input type="number" @bind=Product.Price @bind:event="oninput"/>
+Property Selected: @SelectedProp
+<br/>
+@if(!String.IsNullOrWhiteSpace(SelectedProp))
+{
+  <p>Property Value: @Product.ProductProperties.FirstOrDefault(u=>u.Key==SelectedProp).Value</p>
+}
+</div>
+</div>
 
 @code {
-    BlazedQue_Models.BlazorModels.Demo_Product Product = new ()
+    private string SelectedProp = "";
+    
+    Demo_Product Product = new ()
     {
             Id = 1,
             Name = "Phones",
             Price = 1000.00,
             IsActive = true,
+            ProductProperties = new List<Demo_ProductProps>()
+            {
+                    new Demo_ProductProps()
+                {
+                    Id = 1,
+                    Key = "Color",
+                    Value = "Red"
+                },
+                new Demo_ProductProps()
+                {
+                    Id = 2,
+                    Key = "Size",
+                    Value = "Large"
+                },
+                new Demo_ProductProps()
+                {
+                    Id = 3,
+                    Key = "Weight",
+                    Value = "Heavy"
+                }
+            }
             
         };
         
