@@ -1,0 +1,32 @@
+﻿@page "/blazed/bindprop"
+
+
+<h3>Product</h3>
+Name: @Product.Name <br/>
+Active: @Product.IsActive
+<br />
+Price: @Product.Price
+<br />
+The Product is:  @(Product.IsActive? "Active": "InActive")
+
+<br />
+<br />
+
+Active:
+<input type="checkbox" @bind=Product.IsActive @bind:event="oninput" />
+<br />
+Price:
+<input type="number" @bind=Product.Price @bind:event="oninput"/>
+
+@code {
+    BlazedQue_Models.BlazorModels.Demo_Product Product = new ()
+    {
+            Id = 1,
+            Name = "Phones",
+            Price = 1000.00,
+            IsActive = true,
+            
+        };
+        
+    }
+

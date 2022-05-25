@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlazedQue_Models.BlazorModels
 {
-    internal class Demo_Product
+    public class Demo_Product
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
 
 
     }
